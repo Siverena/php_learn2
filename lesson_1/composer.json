@@ -1,0 +1,19 @@
+{
+    "name": "geekbrains/leveltwo",
+    "autoload": {
+        "psr-4": {
+            "GeekBrains\\LevelTwo\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Siverena",
+            "email": "vpupkin@company.com"
+        }
+    ],
+    "require": {
+        "php": "^8.0",
+        "fakerphp/faker": "^1.21",
+        "roave/security-advisories": "dev-latest"
+    }
+}
