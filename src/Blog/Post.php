@@ -5,50 +5,50 @@ namespace GeekBrains\LevelTwo\Blog;
 
 class Post
 {
-    private int $id;
-    private int $author;
-    private string $header;
+    private UUID $uuid;
+    private UUID $author;
+    private string $title;
     private string $text;
 
     /**
-     * @param int $id
-     * @param int $author
-     * @param string $header
+     * @param UUID $uuid
+     * @param UUID $author
+     * @param string $title
      * @param string $text
      */
-    public function __construct(int $id, int $author, string $header, string $text)
+    public function __construct(UUID $uuid, UUID $author, string $title, string $text)
     {
-        $this->id = $id;
+        $this->uuid = $uuid;
         $this->author = $author;
-        $this->header = $header;
+        $this->title = $title;
         $this->text = $text;
     }
 
     public function __toString(): string
     {
-        return $this->header . " >>> " . $this->text;
+        return $this->title . " >>> " . $this->text;
     }
 
     /**
-     * @return int
+     * @return UUID
      */
-    public function getId(): int
+    public function uuid(): UUID
     {
-        return $this->id;
+        return $this->uuid;
     }
 
     /**
-     * @return int
+     * @return UUID
      */
-    public function getAuthor(): int
+    public function getAuthor(): UUID
     {
         return $this->author;
     }
 
     /**
-     * @param int $author
+     * @param UUID $author
      */
-    public function setAuthor(int $author): void
+    public function setAuthor(UUID $author): void
     {
         $this->author = $author;
     }
@@ -56,17 +56,17 @@ class Post
     /**
      * @return string
      */
-    public function getHeader(): string
+    public function getTitle(): string
     {
-        return $this->header;
+        return $this->title;
     }
 
     /**
-     * @param string $header
+     * @param string $title
      */
-    public function setHeader(string $header): void
+    public function setTitle(string $title): void
     {
-        $this->header = $header;
+        $this->title = $title;
     }
 
     /**
