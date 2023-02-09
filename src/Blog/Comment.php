@@ -4,22 +4,22 @@ namespace GeekBrains\LevelTwo\Blog;
 
 class Comment
 {
-    private int $id;
-    private int $author;
-    private int $post;
+    private UUID $uuid;
+    private UUID $post;
+    private UUID $author;
     private string $text;
 
     /**
-     * @param int $id
-     * @param int $author
-     * @param int $post
+     * @param UUID $uuid
+     * @param UUID $post
+     * @param UUID $author
      * @param string $text
      */
-    public function __construct(int $id, int $author, int $post, string $text)
+    public function __construct(UUID $uuid, UUID $post, UUID $author, string $text)
     {
-        $this->id = $id;
-        $this->author = $author;
+        $this->uuid = $uuid;
         $this->post = $post;
+        $this->author = $author;
         $this->text = $text;
     }
 
@@ -31,47 +31,39 @@ class Comment
     /**
      * @return int
      */
-    public function getId(): int
+    public function uuid(): UUID
     {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id): void
-    {
-        $this->id = $id;
+        return $this->uuid;
     }
 
     /**
      * @return int
      */
-    public function getAuthor(): int
+    public function getAuthor(): UUID
     {
         return $this->author;
     }
 
     /**
-     * @param int $author
+     * @param UUID $author
      */
-    public function setAuthor(int $author): void
+    public function setAuthor(UUID $author): void
     {
         $this->author = $author;
     }
 
     /**
-     * @return int
+     * @return UUID
      */
-    public function getPost(): int
+    public function getPost(): UUID
     {
         return $this->post;
     }
 
     /**
-     * @param int $post
+     * @param UUID $post
      */
-    public function setPost(int $post): void
+    public function setPost(UUID $post): void
     {
         $this->post = $post;
     }
