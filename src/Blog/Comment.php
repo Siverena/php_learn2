@@ -29,7 +29,7 @@ class Comment
     }
 
     /**
-     * @return int
+     * @return UUID
      */
     public function uuid(): UUID
     {
