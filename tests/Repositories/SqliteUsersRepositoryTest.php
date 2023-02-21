@@ -54,8 +54,7 @@ class SqliteUsersRepositoryTest extends TestCase
         $repository = new SqliteUsersRepository($connectionStub);
         // Вызываем метод сохранения пользователя
         $repository->save(
-            new User( // Свойства пользователя точно такие,
-            // как и в описании мока
+            new User(
                 new UUID('123e4567-e89b-12d3-a456-426614174000'),
                 'ivan123',
                 new Name('Ivan', 'Nikitin')
