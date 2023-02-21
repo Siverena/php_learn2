@@ -21,7 +21,7 @@ class SqlitePostsRepository implements PostsRepositoryInterface
     public function save(Post $post): void
     {
         $statement = $this->connection->prepare(
-            'INSERT INTO posts (uuid, author_uuid, title, text) VALUES (:uuid, :author_uuid, :title, :text)'
+            'INSERT INTO posts (uuid, author_uuid, title, text) VALUES (:uuid, :author_uuid, :title, :text) '
         );
         $statement-> execute([
             ':uuid' => $post->uuid(),
