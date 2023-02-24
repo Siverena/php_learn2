@@ -17,4 +17,9 @@ interface PostsRepositoryInterface
      * @return Post
      */
     public function get(UUID $uuid): Post;
+
+	/**
+	 * @param UUID $uuid
+	 */
+	public function delete(UUID $uuid): void;
 }
