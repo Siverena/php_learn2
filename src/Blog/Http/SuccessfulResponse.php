@@ -8,7 +8,8 @@ class SuccessfulResponse extends Response
 // Успешный ответ содержит массив с данными,
 // по умолчанию - пустой
     public function __construct(
-        private array $data = []
+        private array $data = [],
+        protected int $responseCode = 200
     ) {
     }
 // Реализация абстрактного метода

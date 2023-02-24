@@ -67,7 +67,7 @@ class FindByUsernameActionTest extends TestCase
 	// если пользователь найден
     public function testItReturnsSuccessfulResponse(): void
     {
-        $request = new Request(['username' => 'ivan'], []);
+        $request = new Request(['username' => 'ivan'], [],"");
 // На этот раз в репозитории есть нужный нам пользователь
         $usersRepository = $this->usersRepository([
             new User(

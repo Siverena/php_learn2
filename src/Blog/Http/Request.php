@@ -2,39 +2,43 @@
 
 namespace GeekBrains\LevelTwo\Blog\Http;
 
+use GeekBrains\LevelTwo\Blog\Exceptions\HttpException;
 use JsonException;
 class Request
 {
 	public function __construct(
 		private array $get,
 		private array $server,
-// Добавляем свойство для хранения тела запроса
 		private string $body,
 	) {
 	}
+
+	/**
+	 * @throws HttpException
+	 */
 	public function method(): string
 	{
-// В суперглобальном массиве $_SERVER
-// HTTP-метод хранится под ключом REQUEST_METHOD
+		// В суперглобальном массиве $_SERVER
+		// HTTP-метод хранится под ключом REQUEST_METHOD
 		if (!array_key_exists('REQUEST_METHOD', $this->server)) {
-// Если мы не можем получить метод - бросаем исключение
+		// Если мы не можем получить метод - бросаем исключение
 			throw new HttpException('Cannot get method from the request');
 		}
 		return $this->server['REQUEST_METHOD'];
 	}
 
-// Метод для получения массива,
-// сформированного из json-форматированного
-// тела запроса
+	// Метод для получения массива,
+	// сформированного из json-форматированного
+	// тела запроса
 	public function jsonBody(): array
 	{
 		try {
-// Пытаемся декодировать json
+		// Пытаемся декодировать json
 			$data = json_decode(
 				$this->body,
-// Декодируем в ассоциативный массив
+		// Декодируем в ассоциативный массив
 				associative: true,
-// Бросаем исключение при ошибке
+		// Бросаем исключение при ошибке
 				flags: JSON_THROW_ON_ERROR
 			);
 		} catch (JsonException) {
@@ -45,8 +49,8 @@ class Request
 		}
 		return $data;
 	}
-// Метод для получения отдельного поля
-// из json-форматированного тела запроса
+	// Метод для получения отдельного поля
+	// из json-форматированного тела запроса
 	public function jsonBodyField(string $field): mixed
 	{
 		$data = $this->jsonBody();
@@ -62,7 +66,10 @@ class Request
 	// Метод для получения пути запроса
     // Напрмер, для http://example.com/some/page?x=1&y=acb
     // путём будет строка '/some/page'
-    public function path(): string
+	/**
+	 * @throws HttpException
+	 */
+	public function path(): string
     {
         // В суперглобальном массиве $_SERVER
         // значение URI хранится под ключом REQUEST_URI
@@ -78,11 +85,15 @@ class Request
         }
         return $components['path'];
     }
+
     // Метод для получения значения
     // определённого параметра строки запроса
     // Напрмер, для http://example.com/some/page?x=1&y=acb
     // значением параметра x будет строка '1'
-    public function query(string $param): string
+	/**
+	 * @throws HttpException
+	 */
+	public function query(string $param): string
     {
         if (!array_key_exists($param, $this->get)) {
         // Если нет такого параметра в запросе - бросаем исключение
@@ -101,7 +112,10 @@ class Request
     }
     // Метод для получения значения
     // определённого заголовка
-    public function header(string $header): string
+	/**
+	 * @throws HttpException
+	 */
+	public function header(string $header): string
     {
         // В суперглобальном массиве $_SERVER
         // имена заголовков имеют префикс 'HTTP_',

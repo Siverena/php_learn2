@@ -8,7 +8,8 @@ class ErrorResponse extends Response
 // Неуспешный ответ содержит строку с причиной неуспеха,
 // по умолчанию - 'Something goes wrong'
     public function __construct(
-        private string $reason = 'Something goes wrong'
+        private string $reason = 'Something goes wrong',
+        protected int $responseCode = 500
     ) {
     }
 // Реализация абстрактного метода
