@@ -8,9 +8,9 @@ use GeekBrains\LevelTwo\Blog\UUID;
 interface CommentsRepositoryInterface
 {
     /**
-     * @param Comment $user
+     * @param Comment $comment
      */
-    public function save(Comment $user): void;
+    public function save(Comment $comment): void;
 
     /**
      * @param UUID $uuid

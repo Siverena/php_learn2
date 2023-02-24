@@ -9,6 +9,7 @@ use GeekBrains\LevelTwo\Blog\Http\Actions\Users\FindByUsername;
 use GeekBrains\LevelTwo\Blog\Http\ErrorResponse;
 use GeekBrains\LevelTwo\Blog\Http\Request;
 use GeekBrains\LevelTwo\Blog\Repositories\CommentsRepository\SqliteCommentsRepository;
+use GeekBrains\LevelTwo\Blog\Repositories\LikesRepository\SqliteLikesRepository;
 use GeekBrains\LevelTwo\Blog\Repositories\PostsRepository\SqlitePostsRepository;
 use GeekBrains\LevelTwo\Blog\Repositories\UsersRepository\SqliteUsersRepository;
 
@@ -51,7 +52,7 @@ $routes = [
 		),
 	],
 	'POST' => [
-// Добавили новый маршрут
+		'users/add' => '',
 		'/posts/create' => new CreatePost(
 			new SqlitePostsRepository(
 				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
@@ -62,6 +63,17 @@ $routes = [
 		),
 		'/posts/comment'=> new CreateComment(
 			new SqliteCommentsRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			),
+			new SqlitePostsRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			),
+			new SqliteUsersRepository(
+				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
+			)
+		),
+		'/posts/like' => new CreateLike(
+			new SqliteLikesRepository(
 				new PDO('sqlite:' . __DIR__ . '/blog.sqlite')
 			),
 			new SqlitePostsRepository(

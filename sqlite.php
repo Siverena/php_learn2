@@ -29,6 +29,15 @@ $connection->exec(
                        text TEXT NOT NULL,
                        FOREIGN KEY (post_uuid) REFERENCES posts(uuid) ON DELETE CASCADE,
                        FOREIGN KEY (author_uuid) REFERENCES users(uuid) ON DELETE CASCADE
+                );
+                DROP TABLE if exists likes;
+                CREATE TABLE likes (
+                       uuid text not null
+                           CONSTRAINT uuid_primary_key PRIMARY KEY,
+                       post_uuid TEXT NOT NULL,
+                       author_uuid TEXT NOT NULL ,
+                       FOREIGN KEY (post_uuid) REFERENCES posts(uuid) ON DELETE CASCADE,
+                       FOREIGN KEY (author_uuid) REFERENCES users(uuid) ON DELETE CASCADE
                 );"
 
 );
